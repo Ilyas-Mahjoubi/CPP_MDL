@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 18:01:37 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/09/25 17:45:52 by ilmahjou         ###   ########.fr       */
+/*   Created: 2025/09/25 17:01:02 by ilmahjou          #+#    #+#             */
+/*   Updated: 2025/09/25 17:37:08 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#ifndef HUMANB_HPP
+# define HUMANB_HPP
 
-int main()
+#include "Weapon.hpp"
+#include <string>
+#include <iostream>
+#include <new>
+
+class HumanB
 {
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanA bob("Bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
-	}
-	{
-		Weapon club = Weapon("crude spiked club");
-		HumanB jim("Jim");
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
-	}
-	return 0;
-}
+	private:
+		std::string name;
+		Weapon *weapon;  // Pointer, not reference!
+	public:
+		HumanB(std::string name);  // No weapon parameter!
+		void setWeapon(Weapon &weaponType);  // Add this method
+		void attack();
+		~HumanB();
+};
+
+
+#endif
