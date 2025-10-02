@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:35:45 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/10/02 17:35:18 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:28:00 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 class ClapTrap
 {
-	private:
+	protected:
 		std::string name;
 		unsigned int Hit_points;
 		unsigned int Energy_points;
