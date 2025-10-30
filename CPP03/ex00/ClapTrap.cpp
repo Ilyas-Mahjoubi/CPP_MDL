@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:35:43 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/10/01 19:55:27 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2025/10/23 14:03:45 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 	Hit_points -=amount;
 	if (Hit_points < 0)
 		Hit_points = 0;
-	std::cout << "ClapTrap " << name << " takes" << amount << " points of damage remaining HP: " << Hit_points << std::endl;
+	std::cout << "ClapTrap " << name << " takes " << amount << " points of damage remaining HP: " << Hit_points << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)

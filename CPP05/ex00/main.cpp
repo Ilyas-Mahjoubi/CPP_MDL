@@ -5,22 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 18:32:52 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/10/22 17:16:15 by ilmahjou         ###   ########.fr       */
+/*   Created: 2025/10/29 18:03:02 by ilmahjou          #+#    #+#             */
+/*   Updated: 2025/10/30 19:36:34 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#include "Bureaucrat.hpp"
 
-int main( void )
+int main()
 {
-	Point a(0.0f, 0.0f);
-	Point b(4.0f, 2.0f);
-	Point c(1.0f, 7.0f);
-	Point p(4.0f, 0.0f);
-	if (bsp(a, b, c, p))
-		std::cout <<"Inside" << std::endl;
-	else
-		std::cout <<"Not Inside" << std::endl;
+	try {
+		Bureaucrat bob("Bob", 50);
+		std::cout << bob << std::endl;
+		bob.incrementGrade(1);
+		std::cout << bob << std::endl;
+		Bureaucrat alice("Alice", 0);
+	}
+	catch (std::exception& e) {
+		std::cout << "Error: " << e.what() << std::endl;
+	}
+	try {
+		Bureaucrat charlie("Charlie", 151);
+	}
+	catch (std::exception& e) {
+		std::cout << "Error: " << e.what() << std::endl;
+	}
 	return 0;
 }

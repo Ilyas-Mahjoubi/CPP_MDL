@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 17:19:47 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/09/26 17:56:11 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2025/10/21 14:03:41 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,16 @@ void Harl::complain(std::string level)
 	}
 	switch (index)
 	{
-		case 0://DEBUG
+		case 0:
 			std::cout << "[ DEBUG ]" << std::endl;
 			(this->*Complains[0])();
-		case 1:// INFO
+		case 1:
 			std::cout << "[ INFO ]" << std::endl;
 			(this->*Complains[1])();
-		case 2:// WARINIG
+		case 2:
 			std::cout << "[ WARINIG ]" << std::endl;
 			(this->*Complains[2])();
-		case 3: // ERROR
+		case 3:
 			std::cout << "[ ERROR ]" << std::endl;
 			(this->*Complains[3])();
 			break;

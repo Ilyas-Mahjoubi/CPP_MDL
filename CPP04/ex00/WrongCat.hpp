@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 18:32:52 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/10/22 17:16:15 by ilmahjou         ###   ########.fr       */
+/*   Created: 2025/10/27 14:26:15 by ilmahjou          #+#    #+#             */
+/*   Updated: 2025/10/27 14:27:25 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#ifndef WRONGCAT_HPP
+#define WRONGCAT_HPP
 
-int main( void )
+#include "WrongAnimal.hpp"
+
+class WrongCat: public WrongAnimal
 {
-	Point a(0.0f, 0.0f);
-	Point b(4.0f, 2.0f);
-	Point c(1.0f, 7.0f);
-	Point p(4.0f, 0.0f);
-	if (bsp(a, b, c, p))
-		std::cout <<"Inside" << std::endl;
-	else
-		std::cout <<"Not Inside" << std::endl;
-	return 0;
-}
+	public:
+		WrongCat();
+		WrongCat(const WrongCat &obj);
+		WrongCat	&operator=(const WrongCat &obj);
+		void		makeSound() const;
+		~WrongCat();
+};
+
+#endif

@@ -1,9 +1,8 @@
-NAME = megaphone
-
+NAME = Brain_Abstract
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = megaphone.cpp
+SRCS = main.cpp Cat.cpp Dog.cpp AAnimal.cpp Brain.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
@@ -18,5 +17,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean flclean re

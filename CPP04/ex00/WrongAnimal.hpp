@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 18:32:52 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/10/22 17:16:15 by ilmahjou         ###   ########.fr       */
+/*   Created: 2025/10/27 14:16:20 by ilmahjou          #+#    #+#             */
+/*   Updated: 2025/10/27 14:38:46 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#ifndef WRONGANIMAL_HPP
+#define WRONGANIMAL_HPP
 
-int main( void )
+#include <iostream>
+#include <string>
+
+
+class WrongAnimal
 {
-	Point a(0.0f, 0.0f);
-	Point b(4.0f, 2.0f);
-	Point c(1.0f, 7.0f);
-	Point p(4.0f, 0.0f);
-	if (bsp(a, b, c, p))
-		std::cout <<"Inside" << std::endl;
-	else
-		std::cout <<"Not Inside" << std::endl;
-	return 0;
-}
+	protected:
+		std::string	type;
+	public:
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal &obj);
+		WrongAnimal	&operator=(const WrongAnimal &obj);
+		std::string	getType() const ;
+		void	makeSound() const;
+		~WrongAnimal();
+};
+
+#endif

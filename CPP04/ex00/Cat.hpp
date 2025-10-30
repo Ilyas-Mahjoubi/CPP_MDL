@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 18:32:52 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/10/22 17:16:15 by ilmahjou         ###   ########.fr       */
+/*   Created: 2025/10/08 15:31:58 by ilmahjou          #+#    #+#             */
+/*   Updated: 2025/10/27 14:00:36 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#ifndef CAT_HPP
+#define CAT_HPP
 
-int main( void )
+#include "Animal.hpp"
+
+class Cat : public Animal
 {
-	Point a(0.0f, 0.0f);
-	Point b(4.0f, 2.0f);
-	Point c(1.0f, 7.0f);
-	Point p(4.0f, 0.0f);
-	if (bsp(a, b, c, p))
-		std::cout <<"Inside" << std::endl;
-	else
-		std::cout <<"Not Inside" << std::endl;
-	return 0;
-}
+	public:
+		Cat();
+		Cat(std::string type);
+		Cat(const Cat &obj);
+		Cat& operator=(const Cat &obj);
+		void makeSound() const;
+		~Cat();
+};
+
+#endif

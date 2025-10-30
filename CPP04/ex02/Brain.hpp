@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 18:32:52 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/10/22 17:16:15 by ilmahjou         ###   ########.fr       */
+/*   Created: 2025/10/08 17:39:29 by ilmahjou          #+#    #+#             */
+/*   Updated: 2025/10/27 15:19:14 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
-int main( void )
+#include <string>
+#include <iostream>
+
+class Brain
 {
-	Point a(0.0f, 0.0f);
-	Point b(4.0f, 2.0f);
-	Point c(1.0f, 7.0f);
-	Point p(4.0f, 0.0f);
-	if (bsp(a, b, c, p))
-		std::cout <<"Inside" << std::endl;
-	else
-		std::cout <<"Not Inside" << std::endl;
-	return 0;
-}
+	private:
+		std::string ideas[100];
+
+	public:
+		Brain();
+		Brain(const Brain &obj);
+		Brain& operator=(const Brain &obj);
+		void setIdea(int index, const std::string& idea);
+		std::string getIdea(int index) const;
+		~Brain();
+};
+
+#endif

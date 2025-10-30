@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 18:35:49 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/10/01 20:08:16 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2025/10/23 14:06:52 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ int main()
 
 	clap2.takeDamage(3);
 	clap2.takeDamage(7);
+	clap1.takeDamage(3);
 
 	clap1.attack("1");
 	clap1.attack("2");
 	clap1.attack("3");
 	clap1.attack("4");
 	clap1.attack("5");
+	clap1.takeDamage(3);
 	clap1.attack("6");
 	clap1.attack("7");
 	//clap1.attack("3"); ==> this just to test bc he cant make an attack;

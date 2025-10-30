@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 18:32:52 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/10/22 17:16:15 by ilmahjou         ###   ########.fr       */
+/*   Created: 2025/10/08 15:04:28 by ilmahjou          #+#    #+#             */
+/*   Updated: 2025/10/08 18:59:39 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Point.hpp"
+#ifndef AANIMAL_HPP
+#define AANIMAL_HPP
 
-int main( void )
+#include <iostream>
+#include <string>
+
+class AAnimal
 {
-	Point a(0.0f, 0.0f);
-	Point b(4.0f, 2.0f);
-	Point c(1.0f, 7.0f);
-	Point p(4.0f, 0.0f);
-	if (bsp(a, b, c, p))
-		std::cout <<"Inside" << std::endl;
-	else
-		std::cout <<"Not Inside" << std::endl;
-	return 0;
-}
+	protected:
+		std::string type;
+	public:
+		AAnimal();
+		AAnimal(std::string type);
+		AAnimal(const AAnimal &obj);
+		AAnimal& operator=(const AAnimal& obj);
+		virtual void makeSound() const = 0;
+		std::string getType() const;
+		virtual ~AAnimal();
+};
+
+#endif

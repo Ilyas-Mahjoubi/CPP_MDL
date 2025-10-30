@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/25 17:01:02 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/09/25 17:37:08 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:37:16 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ class HumanB
 {
 	private:
 		std::string name;
-		Weapon *weapon;  // Pointer, not reference!
+		Weapon *weapon;
 	public:
-		HumanB(std::string name);  // No weapon parameter!
-		void setWeapon(Weapon &weaponType);  // Add this method
+		HumanB(std::string name);
+		void setWeapon(Weapon &weaponType);
 		void attack();
 		~HumanB();
 };
