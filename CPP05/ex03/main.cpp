@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 18:03:02 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/11/03 19:43:09 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:32:12 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 int main()
 {
@@ -89,6 +90,32 @@ int main()
 	catch(const std::exception& e)
 	{
 		std::cerr << "Error: "<< e.what() << '\n';
+	}
+
+	std::cout << "\n================================== test VI: Intern - Success ==================" << std::endl;
+	try
+	{
+		Intern intern;
+		Bureaucrat boss("boss", 1);
+		AForm* forms[3];
+		
+		forms[0] = intern.makeForm("shrubbery creation", "garden");
+		forms[1] = intern.makeForm("robotomy request", "Marvin");
+		forms[2] = intern.makeForm("presidential pardon", "Arthur Dent");
+		for (int i = 0; i < 3; i++)
+		{
+			if (forms[i])
+			{
+				std::cout << "\n" << *forms[i] << std::endl;
+				boss.signAForm(*forms[i]);
+				boss.executeForm(*forms[i]);
+				delete forms[i];
+			}
+		}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Error: " << e.what() << '\n';
 	}
 	return 0;
 }

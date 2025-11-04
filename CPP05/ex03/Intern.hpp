@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:48:32 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/11/03 20:03:55 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:33:43 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 #include <iostream>
 #include <string>
-#include "AForm.hpp"
 
-class Intern : public AForm
+class AForm;
+
+class Intern
 {
 	public:
 		Intern();

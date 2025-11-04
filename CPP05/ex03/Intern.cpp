@@ -6,11 +6,15 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 19:48:23 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/11/03 20:17:17 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2025/11/04 17:12:48 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Intern.hpp"
+#include "AForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 Intern::Intern()
 {
@@ -35,23 +39,17 @@ Intern::~Intern()
 
 AForm* Intern::makeForm(std::string formName, std::string target)
 {
-	// Array of known form names
 	std::string formNames[3] = {
 		"robotomy request",
 		"presidential pardon",
 		"shrubbery creation"
 	};
-
-	// Find the index of the formName
 	int i = 0;
 	while (i < 3 && formNames[i] != formName)
 	{
 		i++;
 	}
-
 	AForm* newForm = NULL;
-
-	// Use a switch to create the correct form
 	switch (i)
 	{
 		case 0:
@@ -64,13 +62,10 @@ AForm* Intern::makeForm(std::string formName, std::string target)
 			newForm = new ShrubberyCreationForm(target);
 			break;
 		default:
-			// If no match is found (i == 3), print an error
-			std::cout << "Error: Intern cannot create form '" << formName 
-					  << "'. Form name not recognized." << std::endl; [cite: 237]
+			std::cout << "Error: Intern cannot create form '" << formName \
+			  << "'. Form name not recognized." << std::endl;
 			return NULL;
 	}
-
-	// On success, print creation message
-	std::cout << "Intern creates " << newForm->getName() << std::endl; [cite: 236]
+	std::cout << "Intern creates " << newForm->getName() << std::endl;
 	return newForm;
 }
