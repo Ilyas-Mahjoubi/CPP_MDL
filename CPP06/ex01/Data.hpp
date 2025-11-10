@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.cpp                                          :+:      :+:    :+:   */
+/*   Data.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/05 20:03:45 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/11/05 20:04:42 by ilmahjou         ###   ########.fr       */
+/*   Created: 2025/11/10 19:23:53 by ilmahjou          #+#    #+#             */
+/*   Updated: 2025/11/10 19:26:24 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <iostream>
+#ifndef DATA_HPP
+# define DATA_HPP
 
-int main(int argc, char **av)
+#include <string>
+
+class Data
 {
-	(void)argc;
-	std::cout << av[1] << std::endl;
-}
+	public:
+		int id;
+		std::string name;
+		float score;
+
+		Data();
+};
+
+#endif

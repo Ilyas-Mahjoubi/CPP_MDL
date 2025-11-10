@@ -5,17 +5,17 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/11/05 19:02:46 by ilmahjou          #+#    #+#              #
-#    Updated: 2025/11/10 17:20:12 by ilmahjou         ###   ########.fr        #
+#    Created: 2025/11/10 19:13:41 by ilmahjou          #+#    #+#              #
+#    Updated: 2025/11/10 19:47:32 by ilmahjou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = convertor
+NAME = serializer
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp ScalarConverter.cpp
+SRCS = main.cpp Serializer.cpp Data.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

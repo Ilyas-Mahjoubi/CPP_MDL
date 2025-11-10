@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:06:53 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/11/05 20:22:03 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2025/11/10 17:43:37 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,12 @@ class ScalarConverter
 		static bool isSpecialFloat(const std::string& str);
 		static bool isSpecialDouble(const std::string& str);
 
-		// static void printChar(double value, bool impossible);
-		// static void printInt(double value, bool impossible);
-		// static void printFloat(double value);
-		// static void printDouble(double value);
+		static void printChar(double value, bool impossible);
+		static void printInt(double value, bool impossible);
+		static void printFloat(double value);
+		static void printDouble(double value);
 		public :
 			static void convert(const std::string& literal);
 	};
 	
 #endif
-
