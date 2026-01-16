@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 13:22:42 by ilmahjou          #+#    #+#             */
-/*   Updated: 2026/01/15 18:14:10 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2026/01/16 20:39:52 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ class PmergeMe
 		PmergeMe(const PmergeMe &obj);
 		PmergeMe& operator=(const PmergeMe &obj);
 		~PmergeMe();
-		
-		
+
+
 		bool	check_input(std::string);
-		void fordJohnsonSortVec(std::vector<int> &vec);
+		std::vector<int> getVec();
+		std::vector<int> fordJohnsonSortVec(std::vector<int> vec);
 };
 
 #endif
