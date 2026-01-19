@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 13:22:31 by ilmahjou          #+#    #+#             */
-/*   Updated: 2026/01/16 18:54:25 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2026/01/17 19:40:15 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,11 @@ int main(int ac, char **av)
 		std::cout << _merg.getVec()[i] << " ";
 	}
 	std::cout << std::endl;
-	_merg.fordJohnsonSortVec(_merg.getVec());
+	std::vector<int> sorted = _merg.fordJohnsonSortVec(_merg.getVec());
+	std::cout << "After: ";
+	for(size_t i = 0; i < sorted.size(); i++)
+	{
+		std::cout << sorted[i] << " ";
+	}
+	std::cout << std::endl;
 }

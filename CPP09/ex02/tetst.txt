@@ -1,0 +1,291 @@
+// INPUT: [11, 2, 17, 0, 16, 8, 6, 15, 10, 3, 21, 1, 18, 9, 14, 19, 12, 5, 4, 20, 13, 7]
+// Size = 22 (even)
+
+// ============================================================================
+// FIRST CALL: fordJohnsonSortVec([11, 2, 17, 0, 16, 8, 6, 15, 10, 3, 21, 1, 18, 9, 14, 19, 12, 5, 4, 20, 13, 7])
+// ============================================================================
+
+// Line 86-89: Check if size <= 1 (NO, size = 22)
+if (vec.size() <= 1)
+    return vec;  // SKIP
+
+// Line 90-95: Check if odd number of elements (NO, 22 is even)
+if (vec.size() % 2 != 0)  // FALSE
+{
+    only_1 = vec.back();
+    vec.pop_back();
+    _odd = -1;
+}
+// _odd remains = 1 (no straggler)
+
+// Line 96-110: CREATE PAIRS and separate into winners/losers
+for(size_t i = 0; i < vec.size(); i +=2)  // i = 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20
+{
+    // i=0:  vec[0]=11 >= vec[1]=2   → winner=11, loser=2
+    // i=2:  vec[2]=17 >= vec[3]=0   → winner=17, loser=0
+    // i=4:  vec[4]=16 >= vec[5]=8   → winner=16, loser=8
+    // i=6:  vec[6]=6  <  vec[7]=15  → winner=15, loser=6
+    // i=8:  vec[8]=10 >= vec[9]=3   → winner=10, loser=3
+    // i=10: vec[10]=21 >= vec[11]=1 → winner=21, loser=1
+    // i=12: vec[12]=18 >= vec[13]=9 → winner=18, loser=9
+    // i=14: vec[14]=14 < vec[15]=19 → winner=19, loser=14
+    // i=16: vec[16]=12 >= vec[17]=5 → winner=12, loser=5
+    // i=18: vec[18]=4  < vec[19]=20 → winner=20, loser=4
+    // i=20: vec[20]=13 >= vec[21]=7 → winner=13, loser=7
+}
+
+// RESULT:
+// _winners = [11, 17, 16, 15, 10, 21, 18, 19, 12, 20, 13]
+// _losers = [2, 0, 8, 6, 3, 1, 9, 14, 5, 4, 7]
+// _vecPairs = [(11,2), (17,0), (16,8), (15,6), (10,3), (21,1), (18,9), (19,14), (12,5), (20,4), (13,7)]
+
+// Line 111-113: Print debug message
+std::cout << ">>> Hbout: Size = " << vec.size() << " | Winners: ";
+// OUTPUT: >>> Hbout: Size = 22 | Winners: 11 17 16 15 10 21 18 19 12 20 13
+
+// Line 114: RECURSIVE CALL - Sort the winners
+_winners = fordJohnsonSortVec(_winners);
+// This calls fordJohnsonSortVec([11, 17, 16, 15, 10, 21, 18, 19, 12, 20, 13])
+
+// ============================================================================
+// SECOND CALL: fordJohnsonSortVec([11, 17, 16, 15, 10, 21, 18, 19, 12, 20, 13])
+// ============================================================================
+
+// Line 86-89: size = 11, not <= 1, continue
+// Line 90-95: ODD number! (11 % 2 != 0 is TRUE)
+if (vec.size() % 2 != 0)  // TRUE
+{
+    only_1 = vec.back();     // only_1 = 13
+    vec.pop_back();          // vec = [11, 17, 16, 15, 10, 21, 18, 19, 12, 20]
+    _odd = -1;               // mark that we have a straggler
+}
+
+// Line 96-110: CREATE PAIRS from [11, 17, 16, 15, 10, 21, 18, 19, 12, 20]
+// i=0:  11 < 17  → winner=17, loser=11
+// i=2:  16 > 15  → winner=16, loser=15
+// i=4:  10 < 21  → winner=21, loser=10
+// i=6:  18 < 19  → winner=19, loser=18
+// i=8:  12 < 20  → winner=20, loser=12
+
+// _winners = [17, 16, 21, 19, 20]
+// _losers = [11, 15, 10, 18, 12]
+// _vecPairs = [(17,11), (16,15), (21,10), (19,18), (20,12)]
+
+std::cout << ">>> Hbout: Size = 10 | Winners: 17 16 21 19 20";
+
+// Line 114: RECURSIVE CALL
+_winners = fordJohnsonSortVec([17, 16, 21, 19, 20]);
+
+// ============================================================================
+// THIRD CALL: fordJohnsonSortVec([17, 16, 21, 19, 20])
+// ============================================================================
+
+// size = 5 (ODD)
+if (vec.size() % 2 != 0)
+{
+    only_1 = vec.back();     // only_1 = 20
+    vec.pop_back();          // vec = [17, 16, 21, 19]
+    _odd = -1;
+}
+
+// CREATE PAIRS from [17, 16, 21, 19]
+// i=0: 17 > 16 → winner=17, loser=16
+// i=2: 21 > 19 → winner=21, loser=19
+
+// _winners = [17, 21]
+// _vecPairs = [(17,16), (21,19)]
+
+std::cout << ">>> Hbout: Size = 4 | Winners: 17 21";
+
+_winners = fordJohnsonSortVec([17, 21]);
+
+// ============================================================================
+// FOURTH CALL: fordJohnsonSortVec([17, 21])
+// ============================================================================
+
+// size = 2 (EVEN)
+// CREATE PAIRS
+// i=0: 17 < 21 → winner=21, loser=17
+
+// _winners = [21]
+// _vecPairs = [(21,17)]
+
+std::cout << ">>> Hbout: Size = 2 | Winners: 21";
+
+_winners = fordJohnsonSortVec([21]);
+
+// ============================================================================
+// FIFTH CALL: fordJohnsonSortVec([21])
+// ============================================================================
+
+// Line 86-89: BASE CASE!
+if (vec.size() <= 1)  // TRUE (size = 1)
+    return vec;        // RETURN [21]
+
+// ============================================================================
+// UNWINDING FOURTH CALL - After recursion returns [21]
+// ============================================================================
+
+// Line 120: _winners is now sorted
+std::cout << "<<< Rjou3: Winners sorted: 21";
+
+// Line 121: mainChain = [21]
+std::vector<int> mainChain = _winners;  // [21]
+
+// Line 126-136: Build pendingElements (losers in order of sorted winners)
+std::vector<int> pendingElements;
+for (size_t i = 0; i < mainChain.size(); i++)  // i=0, mainChain[0]=21
+{
+    for (size_t j = 0; j < _vecPairs.size(); j++)  // j=0, _vecPairs[0]=(21,17)
+    {
+        if (mainChain[i] == _vecPairs[j].first)  // 21 == 21, TRUE
+        {
+            pendingElements.push_back(_vecPairs[j].second);  // Add 17
+            break;
+        }
+    }
+}
+// pendingElements = [17]
+
+// Line 137-138: Insert first loser at the beginning
+if (!pendingElements.empty())
+    mainChain.insert(mainChain.begin(), pendingElements[0]);
+// mainChain = [17, 21]
+
+// Line 139: Generate Jacobsthal for size 1
+std::vector<int> jacob = generateJacobsthal(1);  // [1, 3]
+
+// Line 143: lastIndex = 1 (we already inserted pendingElements[0])
+
+// Line 145-172: Jacobsthal insertion loop
+for (size_t k = 0; k < jacob.size(); k++)  // k=0: jacob[0]=1
+{
+    size_t currentJacob = jacob[k];  // 1
+    size_t limit = currentJacob;     // 1
+
+    if (limit >= pendingElements.size())  // 1 >= 1, TRUE
+        limit = pendingElements.size() - 1;  // limit = 0
+
+    // Line 157: Loop backwards from limit to lastIndex
+    while (limit >= lastIndex)  // 0 >= 1? FALSE, skip loop
+    {
+        // Nothing inserted here
+    }
+
+    lastIndex = currentJacob + 1;  // lastIndex = 2
+}
+
+// Line 175-179: No straggler (_odd = 1, not -1)
+
+// RETURN [17, 21]
+
+// ============================================================================
+// UNWINDING THIRD CALL - After recursion returns [17, 21]
+// ============================================================================
+
+std::cout << "<<< Rjou3: Winners sorted: 17 21";
+
+// mainChain = [17, 21]
+
+// Build pendingElements from _vecPairs = [(17,16), (21,19)]
+// mainChain order: [17, 21]
+// So pendingElements = [16, 19]
+
+mainChain.insert(mainChain.begin(), pendingElements[0]);
+// mainChain = [16, 17, 21]
+
+jacob = generateJacobsthal(2);  // [1, 3]
+
+lastIndex = 1;
+
+// k=0: jacob[0]=1
+// currentJacob=1, limit=1
+// while(1 >= 1): TRUE
+//   valToInsert = pendingElements[1] = 19
+//   Binary search for 19 in [16, 17, 21]
+//   it points between 17 and 21
+//   mainChain.insert(it, 19) → [16, 17, 19, 21]
+//   limit = 0
+// while(0 >= 1): FALSE
+
+// Line 175-179: Insert straggler only_1 = 20
+if (_odd == -1)  // TRUE
+{
+    std::vector<int>::iterator it = std::lower_bound(mainChain.begin(), mainChain.end(), 20);
+    // Binary search finds position between 19 and 21
+    mainChain.insert(it, 20);
+}
+// mainChain = [16, 17, 19, 20, 21]
+
+// RETURN [16, 17, 19, 20, 21]
+
+// ============================================================================
+// UNWINDING SECOND CALL - After recursion returns [16, 17, 19, 20, 21]
+// ============================================================================
+
+std::cout << "<<< Rjou3: Winners sorted: 16 17 19 20 21";
+
+// mainChain = [16, 17, 19, 20, 21]
+
+// Build pendingElements from _vecPairs = [(17,11), (16,15), (21,10), (19,18), (20,12)]
+// Sorted winners order: [16, 17, 19, 20, 21]
+// Find matching pairs:
+//   16 → (16,15) → add 15
+//   17 → (17,11) → add 11
+//   19 → (19,18) → add 18
+//   20 → (20,12) → add 12
+//   21 → (21,10) → add 10
+// pendingElements = [15, 11, 18, 12, 10]
+
+mainChain.insert(mainChain.begin(), 15);
+// mainChain = [15, 16, 17, 19, 20, 21]
+
+jacob = generateJacobsthal(5);  // [1, 3, 5]
+
+lastIndex = 1;
+
+// k=0: currentJacob=1, limit=1
+// while(1 >= 1): TRUE
+//   Insert pendingElements[1]=11 → [11, 15, 16, 17, 19, 20, 21]
+//   limit=0
+// while(0 >= 1): FALSE
+// lastIndex = 2
+
+// k=1: currentJacob=3, limit=3
+// while(3 >= 2): TRUE → Insert pendingElements[3]=12 → [11, 12, 15, 16, 17, 19, 20, 21]
+// while(2 >= 2): TRUE → Insert pendingElements[2]=18 → [11, 12, 15, 16, 17, 18, 19, 20, 21]
+// while(1 >= 2): FALSE
+// lastIndex = 4
+
+// k=2: currentJacob=5, limit=4 (capped at size-1)
+// while(4 >= 4): TRUE → Insert pendingElements[4]=10 → [10, 11, 12, 15, 16, 17, 18, 19, 20, 21]
+// while(3 >= 4): FALSE
+
+// Insert straggler only_1=13
+// Binary search for 13 in [10, 11, 12, 15, 16, 17, 18, 19, 20, 21]
+// Position between 12 and 15
+// mainChain = [10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21]
+
+// RETURN [10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21]
+
+// ============================================================================
+// UNWINDING FIRST CALL - After recursion returns sorted winners
+// ============================================================================
+
+std::cout << "<<< Rjou3: Winners sorted: 10 11 12 13 15 16 17 18 19 20 21";
+
+// mainChain = [10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21]
+
+// Build pendingElements from original _vecPairs:
+// Sorted winners: [10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21]
+// pendingElements = [3, 2, 5, 7, 6, 8, 0, 9, 14, 4, 1]
+
+mainChain.insert(mainChain.begin(), 3);
+// mainChain = [3, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21]
+
+jacob = generateJacobsthal(11);  // [1, 3, 5, 11]
+
+// Insert using Jacobsthal order with backward insertion within groups
+// After all insertions: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+
+// FINAL RETURN: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]

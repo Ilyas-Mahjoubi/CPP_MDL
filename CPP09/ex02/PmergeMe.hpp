@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 13:22:42 by ilmahjou          #+#    #+#             */
-/*   Updated: 2026/01/16 20:39:52 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2026/01/19 18:05:44 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@
 #include <deque>
 #include <list>
 #include <climits>
+#include <algorithm>
 
 class PmergeMe
 {
 	private :
 		std::vector<int> _vec;
 		std::list<int> _list;
-		//std::vector<int> generateJacobsthal(int n);
+		std::vector<int> generateJacobsthal(int n);
 	public :
 		PmergeMe();
 		PmergeMe(const PmergeMe &obj);
