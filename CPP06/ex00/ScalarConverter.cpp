@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:06:56 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/11/10 18:04:39 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2026/01/27 17:31:39 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,10 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& obj)
 ScalarConverter::~ScalarConverter(){}
 
 
-/* bool ScalarConverter::isChar(const std::string& str)
-{
-	if ((str.length() == 1 && std::isalpha(str[0])) || std::isprint(str[0]))
-	{
-		return (true);
-	}
-	return (false);
-} */
-
 bool ScalarConverter::isChar(const std::string& str)
 {
+	//std::cout << "look here ==> " << str.length() << std::endl;
 	if (str.length() == 1 && std::isprint(static_cast<unsigned char>(str[0])) && !std::isdigit(static_cast<unsigned char>(str[0])))
-		return true;
-	if (str.length() == 3 && str[0] == '\'' && str[2] == '\'')
 		return true;
 	return false;
 }
@@ -66,33 +56,35 @@ bool ScalarConverter::isInt(const std::string& str)
 		if (!std::isdigit(str[i]))
 			return false;
 	}
+
 	return true;
 }
 //maybe i have to do same checks :(
 bool ScalarConverter::isFloat(const std::string& str)
 {
 	if (str.empty())
-	{
 		return false;
-	}
 	if (str[str.length() - 1] != 'f')
-	{
 		return false;
-	}
-	// for (int i = 0; i < str.length(); i++)
-	// {
-	// 	if (((str[i] >= 'a' && str[i] <= 'e') && (str[i] >= 'g' && str[i] <= 'z')) || ((str[i] >= 'A' && str[i] <= 'E') && (str[i] >= 'G' && str[i] <= 'Z')))
-	// 		return false;
-	// }
 	if (str == "-inff" || str == "+inff" || str == "inff" || str == "nanf")
-	{
 		return true;
-	}
-	if (str.find('.') == std::string::npos)
-	{
+	std::string num = str.substr(0, str.length() - 1);
+	if (num.empty())
 		return false;
+	size_t dotcount = 0;
+	size_t i = 0;
+	if (num[0] == '+' || num[0] == '-')
+		i = 1;
+	if (i >= num.length())
+		return false;
+	for (; i < num.length(); i++)
+	{
+		if (num[i] == '.')
+			dotcount++;
+		else if (!std::isdigit(num[i]))
+			return false;
 	}
-	return true;
+	return dotcount == 1;
 }
 
 bool ScalarConverter::isDouble(const std::string& str)
@@ -109,11 +101,20 @@ bool ScalarConverter::isDouble(const std::string& str)
 	{
 		return true;
 	}
-	if (str.find('.') == std::string::npos)
-	{
+	size_t dotcount = 0;
+	size_t i = 0;
+	if (str[0] == '+' || str[0] == '-')
+		i = 1;
+	if (i >= str.length())
 		return false;
+	for (; i < str.length(); i++)
+	{
+		if (str[i] == '.')
+			dotcount++;
+		else if (!std::isdigit(str[i]))
+			return false;
 	}
-	return true;
+	return dotcount == 1;
 }
 bool ScalarConverter::isSpecialFloat(const std::string& str)
 {
@@ -148,11 +149,11 @@ void ScalarConverter::printInt(double value, bool impossible)
 {
 	if (impossible || std::isnan(value) || std::isinf(value))
 	{
-		std::cout << "Int: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
 	}
 	else if( value > std::numeric_limits<int>::max() || value < std::numeric_limits<int>::min())
 	{
-		std::cout << "Int: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
 	}
 	else
 	{
@@ -170,27 +171,6 @@ void ScalarConverter::printDouble(double value)
 {
 	std::cout << "double: " << std::fixed << std::setprecision(1) << value << std::endl;
 }
-
-// void ScalarConverter::convert(const std::string& literal)
-// {
-// 	double value = 0.0;
-// 	bool impossible = false;
-
-// 	if (isChar(literal))
-// 	{
-// 		if (literal.length() == 1) {
-// 			value = static_cast<double>(literal[0]);
-// 		}
-// 		else if (literal.length() == 3) {
-// 			value = static_cast<double>(literal[1]);
-// 		}
-// 	}
-// 	else if (isInt(literal))
-// 	{
-
-// 	}
-// 	printChar(value, impossible);
-// }
 
 void ScalarConverter::convert(const std::string& literal)
 {
@@ -217,7 +197,10 @@ void ScalarConverter::convert(const std::string& literal)
 		else
 		{
 			value = std::numeric_limits<double>::infinity();
-			if (literal[0] == '-') value = -value;
+			if (literal[0] == '-')
+			{
+				value = -value;
+			}
 		}
 	}
 	else if (isFloat(literal))
@@ -227,11 +210,12 @@ void ScalarConverter::convert(const std::string& literal)
 	}
 	else if (isInt(literal))
 	{
-		value = std::atoi(literal.c_str());
+		value = std::atol(literal.c_str());
 	}
 	else
 	{
-		value = std::strtod(literal.c_str(), NULL);
+		std::cerr << "Error" << std::endl;
+		return ;
 	}
 	printChar(value, impossible);
 	printInt(value, impossible);

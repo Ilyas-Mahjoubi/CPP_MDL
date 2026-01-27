@@ -6,7 +6,7 @@
 /*   By: ilmahjou <ilmahjou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 20:10:33 by ilmahjou          #+#    #+#             */
-/*   Updated: 2025/11/10 20:49:48 by ilmahjou         ###   ########.fr       */
+/*   Updated: 2026/01/27 13:37:04 by ilmahjou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int main()
 	Base* a = new A();
 	Base* b = new B();
 	Base* c = new C();
-	
 	Base test;
 	std::cout << "A -> Pointer version: ";
 	identify(a);
@@ -98,7 +97,6 @@ int main()
 	identify(*c);
 	std::cout << "Error: ";
 	identify(test);
-
 	delete a;
 	delete b;
 	delete c;
